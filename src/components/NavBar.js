@@ -10,6 +10,7 @@ import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import SearchIcon from '@mui/icons-material/Search';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import { API_URL } from './Constants';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -56,7 +57,7 @@ export default function SimpleAppBar() {
   
     const fetchIncompleteTaskCount = async () => {
         try {
-          const response = await axios.get('http://localhost:3030/tasks/incomplete/count');
+          const response = await axios.get(`${API_URL}/tasks/incomplete/count`);
           const { count } = response.data;
           setItemCount(count);
         } catch (error) {

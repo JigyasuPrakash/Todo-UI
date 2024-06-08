@@ -5,6 +5,7 @@ import SimplePaper from "./components/SimplePaper";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import axios from "axios";
 import NavBar from "./components/NavBar";
+import { API_URL } from "./components/Constants";
 
 function App() {
   const [open, setOpen] = React.useState(false);
@@ -39,7 +40,7 @@ function App() {
 
   const createTask = () => {
     let payload = {title: title}
-    axios.post("http://localhost:3030/tasks", payload).then((response) => {
+    axios.post(`${API_URL}/tasks`, payload).then((response) => {
         if (response.status === 200){
             handleClose();
         }

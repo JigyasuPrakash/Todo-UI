@@ -17,6 +17,7 @@ import {
   Box,
   TextField,
 } from "@mui/material";
+import { API_URL } from "./Constants";
 
 export default function SimplePaper() {
   const [tasks, setTasks] = React.useState([]);
@@ -34,14 +35,14 @@ export default function SimplePaper() {
   }, []);
 
   const fetchTodoData = () => {
-    axios.get("http://localhost:3030/tasks").then(function (response) {
+    axios.get(`${API_URL}/tasks`).then(function (response) {
       console.log(response.data);
       setTasks(response.data);
     });
   };
 
   const handleDeleteTask = (tid) => {
-    axios.delete(`http://localhost:3030/tasks/${tid}`).then((response) => {
+    axios.delete(`${API_URL}/tasks/${tid}`).then((response) => {
       if (response.status === 200) {
         fetchTodoData();
       } else {
@@ -51,7 +52,7 @@ export default function SimplePaper() {
   };
   const completeTask = (tid) => {
     axios
-      .get(`http://localhost:3030/tasks/revertCompletion/${tid}`)
+      .get(`${API_URL}/tasks/revertCompletion/${tid}`)
       .then((response) => {
         if (response.status === 200) {
           fetchTodoData();
@@ -74,7 +75,7 @@ export default function SimplePaper() {
   const editTask = () => {
     let payload = { title: title };
     axios
-      .put(`http://localhost:3030/tasks/${tid}`, payload)
+      .put(`${API_URL}/tasks/${tid}`, payload)
       .then((response) => {
         if (response.status === 200) {
           fetchTodoData();
