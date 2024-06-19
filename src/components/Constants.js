@@ -1,4 +1,4 @@
 export const API_URL =
   process.env.NODE_ENV === "production"
-    ? "https://nutritious-cyb-srishverse-01c3db6b.koyeb.app"
+    ? "https://todo-upoy.onrender.com/"
     : "http://localhost:3030";
